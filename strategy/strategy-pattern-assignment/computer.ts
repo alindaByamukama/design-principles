@@ -231,23 +231,23 @@ class Computer implements IComputer{
 }
 
 // Computer extensions
-class Laptop extends Computer implements Foldable{
-    fold(): void {
-        console.log("I am folding");
-    }
-}
+// class Laptop extends Computer implements Foldable{
+//     fold(): void {
+//         console.log("I am folding");
+//     }
+// }
 
-class UnbootableComputer extends Computer{
-    boot(): boolean {
-        throw "Not supported!"
-    }
-}
+// class UnbootableComputer extends Computer{
+//     boot(): boolean {
+//         throw "Not supported!"
+//     }
+// }
 
 
 // Testing for LSP
 function testLiskov(computerArg:Computer){
     computerArg.boot();
-    computerArg.authentication(true);
+    computerArg.authentication('credentials');
     computerArg.input('data');
     computerArg.store();
     computerArg.retrieve();
@@ -257,8 +257,12 @@ function testLiskov(computerArg:Computer){
 
 let computer:Computer;
 computer = new Computer('XPS-13', 'DFH-BRA-BRA-BRA-1X34', 'DELL', new Mouse(), new Monitor(), new BasicAuth()); //Super
-let laptop:Computer = new Laptop('LPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new Keyboard(), new Projector(), new UUIDAuth()) // Subtype
-let unbootableComputer:Computer = new UnbootableComputer('UPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new USB(), new Monitor(), new SocialAuth()) // Subtype
+
+/**
+ * let laptop:Computer = new Laptop('LPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new Keyboard(), new Projector(), new UUIDAuth()) // Subtype
+ * let unbootableComputer:Computer = new UnbootableComputer('UPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new USB(), new Monitor(), new SocialAuth()) // Subtype
+ */
+
 
 computer.setAuthStrategy(new JWTAuth());
 computer.setInputDevice(new Keyboard());

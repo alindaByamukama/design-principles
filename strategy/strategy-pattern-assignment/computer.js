@@ -1,17 +1,4 @@
 // S.O.L.I.D
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 // Class Definitions
 // Authentication implementations
 var BasicAuth = /** @class */ (function () {
@@ -162,30 +149,20 @@ var Computer = /** @class */ (function () {
     return Computer;
 }());
 // Computer extensions
-var Laptop = /** @class */ (function (_super) {
-    __extends(Laptop, _super);
-    function Laptop() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Laptop.prototype.fold = function () {
-        console.log("I am folding");
-    };
-    return Laptop;
-}(Computer));
-var UnbootableComputer = /** @class */ (function (_super) {
-    __extends(UnbootableComputer, _super);
-    function UnbootableComputer() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    UnbootableComputer.prototype.boot = function () {
-        throw "Not supported!";
-    };
-    return UnbootableComputer;
-}(Computer));
+// class Laptop extends Computer implements Foldable{
+//     fold(): void {
+//         console.log("I am folding");
+//     }
+// }
+// class UnbootableComputer extends Computer{
+//     boot(): boolean {
+//         throw "Not supported!"
+//     }
+// }
 // Testing for LSP
 function testLiskov(computerArg) {
     computerArg.boot();
-    computerArg.authentication(true);
+    computerArg.authentication('credentials');
     computerArg.input('data');
     computerArg.store();
     computerArg.retrieve();
@@ -194,8 +171,10 @@ function testLiskov(computerArg) {
 }
 var computer;
 computer = new Computer('XPS-13', 'DFH-BRA-BRA-BRA-1X34', 'DELL', new Mouse(), new Monitor(), new BasicAuth()); //Super
-var laptop = new Laptop('LPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new Keyboard(), new Projector(), new UUIDAuth()); // Subtype
-var unbootableComputer = new UnbootableComputer('UPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new USB(), new Monitor(), new SocialAuth()); // Subtype
+/**
+ * let laptop:Computer = new Laptop('LPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new Keyboard(), new Projector(), new UUIDAuth()) // Subtype
+ * let unbootableComputer:Computer = new UnbootableComputer('UPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new USB(), new Monitor(), new SocialAuth()) // Subtype
+ */
 computer.setAuthStrategy(new JWTAuth());
 computer.setInputDevice(new Keyboard());
 testLiskov(computer);
