@@ -224,9 +224,9 @@ class Computer implements IComputer{
     setInputDevice(inputDevice:InputDevice){
         this.inputDevice = inputDevice;
     }
-    // authStrategy out of range / unread this does not work
+
     setAuthStrategy(authStrategy: AuthStrategy) {
-        this.authStrategy = this.authStrategy;
+        this.authStrategy = authStrategy;
     }
 }
 
@@ -264,8 +264,8 @@ computer = new Computer('XPS-13', 'DFH-BRA-BRA-BRA-1X34', 'DELL', new Mouse(), n
  */
 
 
-computer.setAuthStrategy(new JWTAuth());
-computer.setInputDevice(new Keyboard());
+// computer.setAuthStrategy(new JWTAuth());
+// computer.setInputDevice(new Keyboard());
 
 testLiskov(computer)
 // testLiskov(laptop)
