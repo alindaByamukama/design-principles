@@ -1,0 +1,34 @@
+# Using Drawio and the Strategy pattern create a class diagram for our Computer class.
+
+# Add a feature for login or authentication to our Computer class.
+
+# Login or authenticate with different mechanisms.
+
+# Example from class:
+
+- System class
+    - attributes
+        -private loginStrategy:Authentication
+    - methods
+        - public login(credential:any):boolean
+        - public setLoginStrategy(strategy:Auth):void
+
+(System class is composed of A interface)
+
+- Authentication interface
+    - public authenticate(credentials:any):boolean
+        - BASIC implements Authentication (BasicAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
+        - EMAIL implements Authentication (EmailAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
+        - UUID implements Authentication (UUIDAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
+        - JWT implements Authentication (JWTAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
+        - SOCIAL implements Authentication (SocialAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
