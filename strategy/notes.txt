@@ -1,0 +1,55 @@
+# Definition
+
+# Description
+
+# Resource: https://refactoring.guru/design-patterns/strategy
+
+# why strategy pattern
+
+# real world application of the strategy pattern
+
+# strucuture (class diagram)
+- 
+- System class
+    - attributes
+        -private loginStrategy:Authentication
+    - methods
+        - public login(credential:any):boolean
+        - public setLoginStrategy(strategy:Auth):void
+
+(System class is composed of A interface)
+
+- Authentication interface
+    - public authenticate(credentials:any):boolean
+        - BASIC implements Authentication (BasicAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
+        - EMAIL implements Authentication (EmailAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
+        - UUID implements Authentication (UUIDAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
+        - JWT implements Authentication (JWTAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
+        - SOCIAL implements Authentication (SocialAuthentication class)
+            - methods
+                - public authenticate(credentials:any):boolean
+
+(implementation in UML is represented by a dooted line with a clear arrowhead pointed towardes what is being implemented)
+
+# implementation of the strategy pattern
+
+Step 1: Identify the aspects of the Context class that vary (across subtypes and / or objects).
+Step 2: Separate the aspects of the class that vary from those that don’t.
+Step 3: Encapsulate what varies / what is separates 
+- (Create a supertype, i.e. Interface or Abstract class). This serves as the (Strategy / Policy identifier).
+Step 4: Program to an interface (Abstraction), not implementation. 
+- Create concrete implementations of the Strategy whereby each extends an abstract class or implements an interface.
+Step 5: In the context class, create a variable of type as the supertype of the strategy 
+- (Let it’s type not be any of the concrete implementations of the strategy supertype). 
+- This variable can possibly be protected.
+Step 6: In the context class, Create a setter method for the variable created in step 5.
+Step 7: In the context class, Create a method to be used for executing the abstract method in the strategy.
+Step 8: Test for whether the The Strategy Pattern is implemented successfully.
