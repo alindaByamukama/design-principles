@@ -1,0 +1,51 @@
+#Definition
+- GOF state that a singleton pattern ensures that a class has only one instance and provides a global point of access to it
+- aka one of a kind objects
+- 
+
+#Description
+- one instance of a class
+- one and only one object
+- possibly many objects
+
+#conventional ways of ensuring a single instance
+- graphics card
+- loggers (think of logging into an account twice in the same browser env)
+- static variables
+- global vars in static typed langs
+- constant vars
+
+#why singleton pattern
+- pushing factors
+    - incorrect program behaviors
+    - overuse of resouces
+    - inconsistent results
+    - redundanat objects
+- pulling factors
+    -consistency
+    -information hiding
+- neutral factors
+    -objs created on demand
+    - creating resource intensive objects
+    - multiple ways of implementation
+
+#real world application of the singleton pattern
+- thread pools (thread pool objects)
+- caches (caching objects)
+- dialog box
+- preference handling objs
+- registry settings
+- device drivers
+- module loaders ie. js
+- db interface representation /db connections
+- logging handling
+
+#strucuture (class diagram)
+- has a simple class diagram
+- see screenshots
+
+#implementation of the singleton pattern
+- see screenshots
+- goals and applicable concepts
+- encapsulation and information hiding will be used to achive a singleton
+- steps to follow see screenshots
