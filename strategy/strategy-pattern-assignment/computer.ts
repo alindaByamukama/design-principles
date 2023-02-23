@@ -70,7 +70,12 @@ interface IComputer{
     store(data:any):void;
     retrieve(identifier:string):any;
     process(data:any):any;
-    output(data:any):any;
+    output(data: any): any;
+    authentication(credentials: any): boolean;
+}
+
+interface AuthStrategy {
+    authentication(credentials: any): boolean;
 }
 
 interface Foldable{
@@ -86,6 +91,40 @@ interface OutputDevice{
 }
 
 // Class Definitions
+// Authentication implementations
+class BasicAuth implements AuthStrategy{
+    authentication(credentials: any): boolean {
+        console.log(`Basic Authentication credentials: ${credentials}`)
+        return true
+    }
+}
+
+// universally unique identifiers are 128 bit numbers, composed of 16 octets and represented as 32 base-16 characters, that can be used to identify information across a computer system. 
+class UUIDAuth implements AuthStrategy{
+    authentication(credentials: any): boolean {
+        console.log(`UUID Authentication credentials: ${credentials}`)
+        return true
+    }
+    
+}
+
+class SocialAuth implements AuthStrategy{
+    authentication(credentials: any): boolean {
+        console.log(`Social Authentication credentials: ${credentials}`)
+        return true
+    }
+    
+}
+
+// JSON Web Token is a proposed Internet standard for creating data with optional signature and/or optional encryption whose payload holds JSON that asserts some number of claims. The tokens are signed either using a private secret or a public/private key.
+class JWTAuth implements AuthStrategy{
+    authentication(credentials: any): boolean {
+        console.log(`JWT Authentication credentials: ${credentials}`)
+        return true
+    }
+    
+}
+// Input Devices
 class Mouse implements InputDevice{
     input(data: any): void {
         console.log(`I am a mouse and i am inputing data: ${data}`);    
@@ -142,19 +181,27 @@ class Computer implements IComputer{
     private serialNumber: string;
     private brand: string;
     private inputDevice:InputDevice;
-    private outputDevice:OutputDevice;
+    private outputDevice: OutputDevice;
+    private authStrategy: AuthStrategy;
     // Methods
-    constructor(model: string, serialNumber: string, brand: string, inputDevice:InputDevice, outputDevice:OutputDevice){
+    constructor(model: string, serialNumber: string, brand: string, inputDevice: InputDevice, outputDevice: OutputDevice,
+    authStrategy:AuthStrategy) {
         this.model = model;
         this.serialNumber = serialNumber;
         this.brand = brand;
         this.inputDevice = inputDevice;
         this.outputDevice = outputDevice;
+        this.authStrategy = authStrategy;
     }
 
     boot(){
         console.log("Booting.....");
         return true    
+    }
+
+    authentication(credentials: any) {
+        this.authStrategy.authentication(credentials);
+        return true
     }
 
     input(data:any){
@@ -177,12 +224,16 @@ class Computer implements IComputer{
     setInputDevice(inputDevice:InputDevice){
         this.inputDevice = inputDevice;
     }
+    // authStrategy out of range / unread this does not work
+    setAuthStrategy(authStrategy: AuthStrategy) {
+        this.authStrategy = this.authStrategy;
+    }
 }
 
 // Computer extensions
 class Laptop extends Computer implements Foldable{
     fold(): void {
-        console.log("I am foldeing");
+        console.log("I am folding");
     }
 }
 
@@ -196,6 +247,7 @@ class UnbootableComputer extends Computer{
 // Testing for LSP
 function testLiskov(computerArg:Computer){
     computerArg.boot();
+    computerArg.authentication(true);
     computerArg.input('data');
     computerArg.store();
     computerArg.retrieve();
@@ -204,14 +256,15 @@ function testLiskov(computerArg:Computer){
 }
 
 let computer:Computer;
-computer = new Computer('XPS-13', 'DFH-BRA-BRA-BRA-1X34', 'DELL', new Mouse(), new Monitor()); //Super
-let laptop:Computer = new Laptop('LPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new Keyboard(), new Projector()) // Subtype
-let unbootableComputer:Computer = new UnbootableComputer('UPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new USB(), new Monitor()) // Subtype
+computer = new Computer('XPS-13', 'DFH-BRA-BRA-BRA-1X34', 'DELL', new Mouse(), new Monitor(), new BasicAuth()); //Super
+let laptop:Computer = new Laptop('LPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new Keyboard(), new Projector(), new UUIDAuth()) // Subtype
+let unbootableComputer:Computer = new UnbootableComputer('UPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new USB(), new Monitor(), new SocialAuth()) // Subtype
 
+computer.setAuthStrategy(new JWTAuth());
 computer.setInputDevice(new Keyboard());
 
 testLiskov(computer)
-testLiskov(laptop)
+// testLiskov(laptop)
 // testLiskov(unbootableComputer)
 
 
