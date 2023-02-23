@@ -3,7 +3,7 @@
     * Implementing the login feature
         * User can login using one of the following methods:
             * basic auth (email, password)
-            * UID auth (userid, password)
+            * UUID auth (userid, password)
             * social auth (facebook, twitter)
             * JSON WEB TOKEN (jwt token) 
  */
@@ -13,7 +13,7 @@
     *   login
  * algorithms
     * basic auth (email, password)
-    * UID auth (userid, password)
+    * UUID auth (userid, password)
     * social auth (facebook, twitter)
     * JSON WEB TOKEN (jwt token) 
  * context
