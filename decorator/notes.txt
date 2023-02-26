@@ -1,16 +1,15 @@
-TOPIC: DECORATOR PATTERN
+TOPIC: DECORATOR PATTERN -> STRUCTURAL PATTERNS
 GROUP MEMEBERS: Alinda, Wil, Gerald, Dominic, Richard
-#Definition
 
 #Definition: 
 
 - This pattern attaches additional responsibilities to an object dynamically. 
 - Decorators provide a flexible alternative to subclassing for extending functionality.
 - decorators have the same supertype as the objects they decorate
-- you can use one or more decorators to wrap an objects
-- a decorator ahs the same supertype as the object it decorates
+- you can use one or more decorators to wrap an object
+- a decorator has the same supertype as the object it decorates
     - we can swap a decorated object in place of the original wrapped object
-- objects can decorated at any time 
+- objects can be decorated at any time 
     - we can decorate objects dynamically at runtime with as many decorators
     - instead of using run-time polymorphism via method overriding!
 
@@ -23,6 +22,7 @@ GROUP MEMEBERS: Alinda, Wil, Gerald, Dominic, Richard
     - with composition we can use decorators at runtime instead of getting only the behavior that the superclass gives us or what we override
 
 - Think of the open-closed principle -> closed to modification but open to extension.
+- what is the difference between run-time and compile-time
 
 #real world application of the decorator pattern
 
