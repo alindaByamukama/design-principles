@@ -174,7 +174,7 @@ computer = new Computer('XPS-13', 'DFH-BRA-BRA-BRA-1X34', 'DELL', new Mouse(), n
  * let laptop:Computer = new Laptop('LPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new Keyboard(), new Projector(), new UUIDAuth()) // Subtype
  * let unbootableComputer:Computer = new UnbootableComputer('UPS-13', 'RFH-BXA-BRA-BRA-1X34', 'HP', new USB(), new Monitor(), new SocialAuth()) // Subtype
  */
-// computer.setAuthStrategy(new JWTAuth());
+computer.setAuthStrategy(new JWTAuth());
 // computer.setInputDevice(new Keyboard());
 testLiskov(computer);
 // testLiskov(laptop)

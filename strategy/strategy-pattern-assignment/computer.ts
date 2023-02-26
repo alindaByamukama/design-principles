@@ -211,7 +211,7 @@ class Computer implements IComputer{
     store(){
         console.log("Storing data.....");                
     }
-    retrieve(){
+    retrieve(identifier: string){
         console.log("Retrieving data.....");        
     }
     process(){
@@ -264,7 +264,7 @@ computer = new Computer('XPS-13', 'DFH-BRA-BRA-BRA-1X34', 'DELL', new Mouse(), n
  */
 
 
-// computer.setAuthStrategy(new JWTAuth());
+computer.setAuthStrategy(new JWTAuth());
 // computer.setInputDevice(new Keyboard());
 
 testLiskov(computer)
