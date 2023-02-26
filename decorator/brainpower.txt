@@ -1,0 +1,6 @@
+Question:
+- Before going further, think about how you’d implement the cost()
+method of the coffees and the condiments. 
+- Also think about how you’d implement the getDescription() method of the condiments.
+
+Question:

@@ -1,0 +1,39 @@
+TOPIC: DECORATOR PATTERN
+GROUP MEMEBERS: Alinda, Wil, Gerald, Dominic, Richard
+#Definition
+
+#Definition: 
+
+- This pattern attaches additional responsibilities to an object dynamically. 
+- Decorators provide a flexible alternative to subclassing for extending functionality.
+- decorators have the same supertype as the objects they decorate
+- you can use one or more decorators to wrap an objects
+- a decorator ahs the same supertype as the object it decorates
+    - we can swap a decorated object in place of the original wrapped object
+- objects can decorated at any time 
+    - we can decorate objects dynamically at runtime with as many decorators
+    - instead of using run-time polymorphism via method overriding!
+
+#Why decorator pattern
+
+- With the decorator pattern you will be able to give your objects new responsibilities without making any code changes.
+    - A decorator makes it possible to add or alter behavior of an interface at run-time.
+    - If we rely on inheritance then our behavior can only be determined statically at compile time 
+- This can be done by using delegation and composition instead
+    - with composition we can use decorators at runtime instead of getting only the behavior that the superclass gives us or what we override
+
+- Think of the open-closed principle -> closed to modification but open to extension.
+
+#real world application of the decorator pattern
+
+- flyweight objects (flyweight design pattern)
+- enhancing APIs by augmenting facade pattern e.g. by wrapping a complex system to provide space to introduce new functionality
+- adding or removing decorators on command e.g. a button press is a common UI pattern
+- applying or removing decorators based on changes of state
+
+#strucuture (class diagram)
+ (see diagram)
+
+ 
+
+#implementation of the decorator pattern
