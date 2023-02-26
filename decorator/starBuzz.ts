@@ -12,18 +12,30 @@
 abstract class Beverage { 
     public description: string
 
+    constructor(description: string) {
+        this.description = description;
+    }
+
     public getDescription(): string {
         return this.description
     }
-    cost() { }
+    // because its abstract it must overridden in a subclass (java)
+    abstract cost(): number;
     
 }
 
 // here is the reference to the beverage that the decorators will be wrapping
 // note we are extending beverage here to have the correct type not to inherit behaviour
-// the behavior comes via the composition of decorators with the base components and other deocrators
+// the behavior comes via the composition of decorators with the base components and other decorators
 abstract class CondimentDecorator extends Beverage {
     public beverage: Beverage;
+
+    constructor(description: string, beverage: Beverage) {
+        // we must call upon super - this is a reference to the parent class
+        super(description);
+        this.beverage = beverage;
+    }
+
     public getDescription():string { 
         return this.description
     }
@@ -31,25 +43,25 @@ abstract class CondimentDecorator extends Beverage {
 
 // these are our condiment decorators - they need to implement cost() and getDescription()
 class Milk extends CondimentDecorator {
-    cost() { }
+    cost():number { return 1.99 }
     public getDescription():string { 
         return this.description
     }
 }
 class Mocha extends CondimentDecorator {
-    cost() { }
+    cost():number { return 1.99 }
     public getDescription():string { 
         return this.description
     }
 }
 class Soy extends CondimentDecorator {
-    cost() { }
+    cost():number { return 1.99 }
     public getDescription():string { 
         return this.description
     }
 }
 class Whip extends CondimentDecorator {
-    cost() { }
+    cost():number { return 1.99 }
     public getDescription():string { 
         return this.description
     }
