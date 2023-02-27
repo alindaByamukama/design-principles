@@ -10,7 +10,7 @@
 
 // beverage acts as our abstract component class - you can also use an interface
 abstract class Beverage { 
-    public description: string
+    public description: string = "Unkown beverage";
 
     constructor(description: string) {
         this.description = description;
@@ -20,8 +20,42 @@ abstract class Beverage {
         return this.description
     }
     // because its abstract it must overridden in a subclass (java)
-    abstract cost(): number;
+    public abstract cost(): number;
     
+}
+
+// these are the four concrete components - one per coffee type
+class HouseBlend extends Beverage {
+    public HouseBlend() {
+        this.description = "HouseBlend"
+    }
+    public cost(): number{
+        return 0.89;
+    }
+}
+class DarkRoast extends Beverage {
+    public DarkRoast() {
+        this.description = "DarkRoast"
+    }
+    public cost(): number{
+        return 0.99;
+    }
+}
+class Decaf extends Beverage {
+    public Decaf() {
+        this.description = "Decaf"
+    }
+    public cost(): number{
+        return 1.05;
+    }
+}
+class Espresso extends Beverage {
+    public Espresso() {
+        this.description = "Espresso"
+    }
+    public cost(): number{
+        return 1.99;
+    }
 }
 
 // here is the reference to the beverage that the decorators will be wrapping
@@ -41,42 +75,57 @@ abstract class CondimentDecorator extends Beverage {
     }
 }
 
+/*
+- instatiate Mocha with a reference to a Beverage
+- set the instance to the object we are wrapping to the decorators constructor
+- first we delegate to the object we are decorating to get its description, then append "Mocha" to that description
+- then we compute the cost of our beverage with Mocha by first delegating the call to the object we're decorating and ten we add the cost of Mocha
+*/
+
 // these are our condiment decorators - they need to implement cost() and getDescription()
 class Milk extends CondimentDecorator {
-    cost():number { return 1.99 }
-    public getDescription():string { 
-        return this.description
+    public Milk(beverage: Beverage) {
+        this.beverage = beverage;
     }
+    
+    public getDescription():string { 
+        return this.beverage.getDescription() + ", Milk";
+    }
+
+    public cost():number { return 0.10 }
 }
 class Mocha extends CondimentDecorator {
-    cost():number { return 1.99 }
-    public getDescription():string { 
-        return this.description
+    public Mocha(beverage: Beverage) {
+        this.beverage = beverage;
     }
+    
+    public getDescription():string { 
+        return this.beverage.getDescription() + ", Mocha";
+    }
+
+    public cost():number { return 0.20 }
+    
 }
 class Soy extends CondimentDecorator {
-    cost():number { return 1.99 }
-    public getDescription():string { 
-        return this.description
+    public Soy(beverage: Beverage) {
+        this.beverage = beverage;
     }
+    
+    public getDescription():string { 
+        return this.beverage.getDescription() + ", Soy";
+    }
+
+    public cost():number { return 0.15 }
 }
 class Whip extends CondimentDecorator {
-    cost():number { return 1.99 }
-    public getDescription():string { 
-        return this.description
+    public Whip(beverage: Beverage) {
+        this.beverage = beverage;
     }
+    
+    public getDescription():string { 
+        return this.beverage.getDescription() + ", Whip";
+    }
+
+    public cost():number { return 0.10 }
 }
 
-// these are the four concrete components - one per coffee type
-class HouseBlend extends Beverage {
-    cost(){}
-}
-class DarkRoast extends Beverage {
-    cost(){}
-}
-class Decaf extends Beverage {
-    cost(){}
-}
-class Espresso extends Beverage {
-    cost(){}
-}
